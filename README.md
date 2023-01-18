@@ -1,4 +1,4 @@
-Welcome to Dashing DataWarehouse with dbt project!
+### Welcome to Dashing DataWarehouse with dbt project! ( ```ongoing``` )
 
 # Instruction
 + [Environment setup](#set_environment)
