@@ -1,15 +1,23 @@
-Welcome to your new dbt project!
+Welcome to Dashing DataWarehouse with dbt project!
 
-### Using the starter project
-
-Try running the following commands:
-- dbt run
-- dbt test
+# Instruction
++ [Environment setup](#set_environment)
++ [Project setup](#set_project)
 
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+# set_environment
++ create python venv
++ install ```requirements.txt```
+
+# set_project
++ DB setup ( ```postgres``` )
+    + DBName: dvdrental
+    + SchemaName: dashingdvdrental
++ clone the repo
+
++ File configure: configure the following file according to ```profiles.yml```
+
+    + Windows
+        + C:\Users\This Pc\\.dbt
+    + linux
+    + mac
