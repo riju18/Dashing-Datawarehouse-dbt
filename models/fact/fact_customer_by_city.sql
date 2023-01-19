@@ -4,7 +4,7 @@ as(
         city,
         count(1) as total_customer
     from
-        {{ ref('dim_customer_info') }}
+        {{ ref('src_customer') }}
     group by
         1
 )
