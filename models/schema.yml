@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_actor_info
+    description: actor basic info
+    columns:
+      - name: actor_id
+        description: unique key of actor table
+        tests:
+          - unique
+          - not_null
+  - name: dim_customer_info
+    description: customer basic info
+    columns:
+      - name: customer_id
+        description: unique key of customer table
+        tests:
+          - unique
+          - not_null
