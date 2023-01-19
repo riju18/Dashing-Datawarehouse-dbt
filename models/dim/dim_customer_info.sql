@@ -1,4 +1,4 @@
-{#unique_key is used to replace old data with new data #}
+{# unique_key is used to replace old data with new data #}
 
 {{
     config(
