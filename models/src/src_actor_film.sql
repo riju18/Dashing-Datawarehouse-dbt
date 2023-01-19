@@ -1,11 +1,12 @@
 with actor_film_info as (
 select
 	aa.actor_id
-	, ff.language_id
 	, aa.first_name
 	, aa.last_name
+    , aa.last_update as actor_last_update
     , ff.film_id
 	, ff.title as film_name
+    , ff.language_id
 	, ff.description as film_description
 	, ff.release_year as film_release_year
 	, ff.rental_duration as rental_duration_in_day
