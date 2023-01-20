@@ -9,6 +9,17 @@ models:
         tests:
           - unique
           - not_null
+
+      - name: first_name
+        description: firstname of actor
+        tests:
+          - not_null
+
+      - name: last_name
+        description: lastname of actor
+        tests:
+          - not_null
+
   - name: dim_customer_info
     description: customer basic info
     columns:
@@ -17,3 +28,8 @@ models:
         tests:
           - unique
           - not_null
+
+      - name: customer_is_active
+        description: active or inactive
+        tests:
+            - not_null
