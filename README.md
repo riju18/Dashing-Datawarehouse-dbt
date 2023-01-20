@@ -3,7 +3,7 @@
 # Instruction
 + [Environment setup](#set_environment)
 + [Project setup](#set_project)
-
++ [Export data to DWH](#export)
 
 # set_environment
 + create python venv
@@ -32,3 +32,6 @@
     ```text
     dbt docs serve
     ```
+
+# export
++ place any ```*.csv``` file in ```seeds``` dir & run ```dbt seed```. A table will be created with the name of csv file.
