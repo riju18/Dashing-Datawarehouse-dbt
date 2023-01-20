@@ -9,6 +9,7 @@
 with dim_actor_info as
 (
 	select
+        {{ dbt_utils.generate_surrogate_key(['t1.actor_id', 't1.first_name', 't1.last_name']) }} as dim_actor_id,
 		t1.actor_id,
 		t1.first_name,
 		t1.last_name,
