@@ -2,6 +2,7 @@
 
 ## Dir Structure
 
+```
 project
 │   README.md
 │   requirements.txt  
@@ -25,8 +26,8 @@ project
 │   │   *.sql     : history/log of tables
 │   
 └───tests
-│   │   *.sql     : custom test file
-│  
+│   │   *.sql     : custom test file 
+```
 
 # Instruction
 + [Environment setup](#set_environment)
