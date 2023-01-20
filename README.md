@@ -29,6 +29,9 @@ project
 │   │   *.sql     : custom test file 
 ```
 
+# DAG sample
+![graph](dbt-dag.png)
+
 # Instruction
 + [Environment setup](#set_environment)
 + [Project setup](#set_project)
