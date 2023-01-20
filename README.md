@@ -1,5 +1,33 @@
 ### Welcome to Dashing DataWarehouse with dbt project! ( ```ongoing``` )
 
+## Dir Structure
+
+project
+│   README.md
+│   requirements.txt  
+|   .gitignore  
+|   packages.yml
+|   dbt_project.yml
+│
+└───miscellaneous
+│   │   profiles.yml     : sample config file
+│   
+└───models
+│   │   schema.yml       : for generic test & documentation
+│   └───src              : all core sql file
+│   └───dim              : data generated from src
+│   └───fact             : data generated from src
+│
+└───seeds
+│   │   *.csv     : static file want to export in DWH
+│   
+└───snapshots
+│   │   *.sql     : history/log of tables
+│   
+└───tests
+│   │   *.sql     : custom test file
+│  
+
 # Instruction
 + [Environment setup](#set_environment)
 + [Project setup](#set_project)
