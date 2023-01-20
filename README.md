@@ -44,11 +44,11 @@ project
 # set_project
 + DB setup ( ```postgres``` )
     + DBName: dvdrental
-    + restore ```dvdrental.tar``` in ```public``` schema
+    + restore ```miscellaneous --> dvdrental.tar``` dir in ```public``` schema
     + SchemaName: dashingdvdrental
 + clone the repo
 + goto repo
-+ File configure: configure the following file according to ```miscellaneous -- > profiles.yml```
++ File configure: configure the following file according to ```miscellaneous --> profiles.yml```
 
     + Windows
         + C:\Users\This Pc\\.dbt
