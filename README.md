@@ -44,6 +44,7 @@ project
 # set_project
 + DB setup ( ```postgres``` )
     + DBName: dvdrental
+    + restore ```dvdrental.tar``` in ```public``` schema
     + SchemaName: dashingdvdrental
 + clone the repo
 + goto repo
