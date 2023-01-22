@@ -35,7 +35,7 @@ project
 # Instruction
 + [Environment setup](#set_environment)
 + [Project setup](#set_project)
-+ [Export data to DWH](#import)
++ [Import data to DWH](#import)
 
 # set_environment
 + create python venv
