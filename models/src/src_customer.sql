@@ -20,10 +20,10 @@ WITH customer_info AS (
         cy.country,
         aa.postal_code,
         aa.phone
-       FROM customer cc
-         JOIN address aa ON aa.address_id = cc.address_id
-         JOIN city ct ON ct.city_id = aa.city_id
-         JOIN country cy ON cy.country_id = ct.country_id
+       FROM public.customer cc
+         JOIN public.address aa ON aa.address_id = cc.address_id
+         JOIN public.city ct ON ct.city_id = aa.city_id
+         JOIN public.country cy ON cy.country_id = ct.country_id
       ORDER BY cc.customer_id
     )
 SELECT * FROM customer_info
