@@ -3,7 +3,7 @@ version: 2
 sources:
   
   # source of SOME data
-  - name: social_media_campaign_raw_data # this is the source_name
+  - name: dvdrental_raw_data # this is the source_name
     database: "dvdrental"
     schema: public
 

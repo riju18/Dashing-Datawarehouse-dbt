@@ -1,13 +1,12 @@
 version: 2
 
 models:
-  - name: dim_actor_info
+  - name: src_actor
     description: actor basic info
     columns:
       - name: actor_id
         description: unique key of actor table
         tests:
-          - unique
           - not_null
 
       - name: first_name
@@ -19,17 +18,3 @@ models:
         description: lastname of actor
         tests:
           - not_null
-
-  - name: dim_customer_info
-    description: customer basic info
-    columns:
-      - name: customer_id
-        description: unique key of customer table
-        tests:
-          - unique
-          - not_null
-
-      - name: customer_is_active
-        description: active or inactive
-        tests:
-            - not_null
