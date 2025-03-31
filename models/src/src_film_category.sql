@@ -11,12 +11,12 @@
 WITH CTE AS (
 
     SELECT
-        {{ dbt_utils.generate_surrogate_key(['actor_id']) }} AS row_id
+        {{ dbt_utils.generate_surrogate_key(['film_id', 'category_id']) }} AS row_id
         , *
         , user AS created_by
         , CURRENT_TIMESTAMP AS src_data_ingestion_time
     FROM
-        {{source('dvdrental_raw_data', 'actor')}}
+        {{source('dvdrental_raw_data', 'film_category')}}
     WHERE 1=1
         AND last_update::date = CURRENT_DATE - 1
 )
