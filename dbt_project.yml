@@ -33,8 +33,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   dashing_warehouse:
-    +materialized: view
+    src:
+      +materialized: table
+      +schema: src
+      +tags: ["bronze", "daily", "clean raw data"]
     dim:
       +materialized: table
+      +schema: dim
+      +tags: ["silver", "dimensional modeling", "attributes", "unique"]
     fact:
       +materialized: table
+      +schema: fact
+      +tags: ["silver", "gold", "fact modeling"]

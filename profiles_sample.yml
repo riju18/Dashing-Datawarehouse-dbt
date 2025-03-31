@@ -1,0 +1,25 @@
+dashing_warehouse:
+
+  outputs:
+  
+    dev:
+      dbname: dvdrental
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: dbt
+      threads: 4
+      type: postgres
+      user: postgres
+
+    dev:
+      dbname: dvdrental
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: dbt
+      threads: 4
+      type: postgres
+      user: postgres
+
+  target: dev
