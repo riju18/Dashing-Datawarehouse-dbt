@@ -10,6 +10,7 @@ WITH CTE AS (
     SELECT
         actor_id
         , film_id
+        , last_update
         , ROW_NUMBER() OVER(PARTITION BY actor_id, film_id ORDER BY last_update DESC) AS seq
     FROM
         {{source('dvdrental_raw_data', 'film_actor')}}
@@ -23,6 +24,7 @@ final_result AS (
         {{ dbt_utils.generate_surrogate_key(['actor_id', 'film_id']) }} AS row_id
         , actor_id
         , film_id
+        , last_update
         , user AS created_by
         , CURRENT_TIMESTAMP AS src_data_ingestion_time
     FROM
