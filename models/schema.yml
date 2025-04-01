@@ -18,3 +18,75 @@ models:
         description: lastname of actor
         tests:
           - not_null
+  
+  - name: dim_actor
+    description: actor table with unique actor info
+    columns:
+      - name: actor_id
+        description: unique key of actor table
+        tests:
+          - not_null
+          - unique
+  
+  - name: dim_address
+    description: address table with unique address info
+    columns:
+      - name: address_id
+        description: unique key of address table
+        tests:
+          - not_null
+          - unique
+  
+  - name: dim_category
+    description: movie category dim table
+    columns:
+      - name: category_id
+        description: unique key of category table
+        tests:
+          - not_null
+          - unique
+  
+  - name: dim_customer
+    description: customer dim table
+    columns:
+      - name: customer_id
+        description: unique key of customer table
+        tests:
+          - not_null
+          - unique
+  
+  - name: dim_film
+    description: film dim table with film category and language
+    columns:
+      - name: film_id
+        description: unique key of film table
+        tests:
+          - not_null
+          - unique
+  
+  - name: dim_language
+    description: film language dim table
+    columns:
+      - name: language_id
+        description: unique key of language table
+        tests:
+          - not_null
+          - unique
+  
+  - name: dim_staff
+    description: inventory staff dim table
+    columns:
+      - name: staff_id
+        description: unique key of staff table
+        tests:
+          - not_null
+          - unique
+  
+  - name: dim_store
+    description: inventory dim table
+    columns:
+      - name: store_id
+        description: unique key of inventory table
+        tests:
+          - not_null
+          - unique
