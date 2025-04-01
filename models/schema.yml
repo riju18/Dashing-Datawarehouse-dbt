@@ -6,17 +6,17 @@ models:
     columns:
       - name: actor_id
         description: unique key of actor table
-        tests:
+        data_tests:
           - not_null
 
       - name: first_name
         description: firstname of actor
-        tests:
+        data_tests:
           - not_null
 
       - name: last_name
         description: lastname of actor
-        tests:
+        data_tests:
           - not_null
   
   - name: dim_actor
@@ -24,7 +24,7 @@ models:
     columns:
       - name: actor_id
         description: unique key of actor table
-        tests:
+        data_tests:
           - not_null
           - unique
   
@@ -33,25 +33,35 @@ models:
     columns:
       - name: address_id
         description: unique key of address table
-        tests:
+        data_tests:
           - not_null
           - unique
+      
+      - name: address
+        description: address of customer or staff
+        data_tests:
+          - not_null
   
   - name: dim_category
     description: movie category dim table
     columns:
       - name: category_id
         description: unique key of category table
-        tests:
+        data_tests:
           - not_null
           - unique
+      
+      - name: name
+        description: movie category name
+        data_tests:
+          - not_null
   
   - name: dim_customer
     description: customer dim table
     columns:
       - name: customer_id
         description: unique key of customer table
-        tests:
+        data_tests:
           - not_null
           - unique
   
@@ -60,16 +70,20 @@ models:
     columns:
       - name: film_id
         description: unique key of film table
-        tests:
+        data_tests:
+          - unique 
           - not_null
-          - unique
+          - equal_count:  # generic test
+              source_model: ref('src_film')
+              source_column: film_id
+            
   
   - name: dim_language
     description: film language dim table
     columns:
       - name: language_id
         description: unique key of language table
-        tests:
+        data_tests:
           - not_null
           - unique
   
@@ -78,7 +92,7 @@ models:
     columns:
       - name: staff_id
         description: unique key of staff table
-        tests:
+        data_tests:
           - not_null
           - unique
   
@@ -87,6 +101,14 @@ models:
     columns:
       - name: store_id
         description: unique key of inventory table
-        tests:
+        data_tests:
           - not_null
           - unique
+  
+  - name: fact_actor_total_film
+    description: fact table containing total movies based on different category
+    columns:
+      - name: actor_id
+        description: actor identification
+        data_tests:
+          - not_null
