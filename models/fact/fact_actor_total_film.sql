@@ -17,8 +17,8 @@ WITH CTE AS (
         {{ref('src_film_actor')}} AS sfa
     LEFT JOIN {{ref('dim_film')}} AS df ON df.film_id = sfa.film_id 
     WHERE 1=1
-        AND sfa.src_data_ingestion_time::date = CURRENT_DATE
-        OR df.src_data_ingestion_time::date = CURRENT_DATE
+        AND {{timestamp_to_date('sfa.src_data_ingestion_time')}} = CURRENT_DATE
+        OR {{timestamp_to_date('df.src_data_ingestion_time')}} = CURRENT_DATE
     GROUP BY 1, 2, 3, 4
 ),
 

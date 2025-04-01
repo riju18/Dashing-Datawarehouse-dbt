@@ -15,7 +15,7 @@ WITH CTE AS (
     FROM
         {{ref('src_language')}}
     WHERE 1=1
-        AND src_data_ingestion_time::date = CURRENT_DATE
+        AND {{timestamp_to_date('src_data_ingestion_time')}} = CURRENT_DATE
 ),
 
 final_result AS (

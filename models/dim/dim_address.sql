@@ -21,9 +21,9 @@ WITH CTE AS (
     LEFT JOIN {{ref('src_city')}} AS sc ON sc.city_id = sa.city_id
     LEFT JOIN {{ref('src_country')}} AS sc2 ON sc2.country_id = sc.country_id
     WHERE 1=1
-        AND sa.src_data_ingestion_time::date = CURRENT_DATE
-        OR sc.src_data_ingestion_time::date = CURRENT_DATE
-        OR sc2.src_data_ingestion_time::date = CURRENT_DATE
+        AND {{timestamp_to_date('sa.src_data_ingestion_time')}} = CURRENT_DATE
+        OR {{timestamp_to_date('sc.src_data_ingestion_time')}} = CURRENT_DATE
+        OR {{timestamp_to_date('sc2.src_data_ingestion_time')}} = CURRENT_DATE
 ),
 
 dedupe AS (

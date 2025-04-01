@@ -29,10 +29,10 @@ WITH CTE AS (
     LEFT JOIN {{ref('src_language')}} AS sl ON sl.language_id = sf.language_id 
     LEFT JOIN {{ref('src_category')}} AS sc ON sc.category_id = sfc.category_id 
     WHERE 1=1
-        AND sf.src_data_ingestion_time::date = CURRENT_DATE
-        OR sfc.src_data_ingestion_time::date = CURRENT_DATE
-        OR sl.src_data_ingestion_time::date = CURRENT_DATE
-        OR sc.src_data_ingestion_time::date = CURRENT_DATE
+        AND {{timestamp_to_date('sf.src_data_ingestion_time')}} = CURRENT_DATE
+        OR {{timestamp_to_date('sfc.src_data_ingestion_time')}} = CURRENT_DATE
+        OR {{timestamp_to_date('sl.src_data_ingestion_time')}} = CURRENT_DATE
+        OR {{timestamp_to_date('sc.src_data_ingestion_time')}} = CURRENT_DATE
 ),
 
 dedupe AS (
