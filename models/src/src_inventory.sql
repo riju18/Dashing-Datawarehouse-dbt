@@ -11,11 +11,12 @@ WITH CTE AS (
         inventory_id
         , film_id
         , store_id
+        , last_update
         , ROW_NUMBER() OVER(PARTITION BY inventory_id, film_id, store_id ORDER BY last_update DESC) AS seq
     FROM
         {{source('dvdrental_raw_data', 'inventory')}}
     WHERE 1=1
-        AND last_update::date = CURRENT_DATE - 1
+        AND {{timestamp_to_date('last_update')}} = CURRENT_DATE - 1
 ),
 
 final_result AS (
@@ -25,6 +26,7 @@ final_result AS (
         , inventory_id
         , film_id
         , store_id
+        , last_update
         , user AS created_by
         , CURRENT_TIMESTAMP AS src_data_ingestion_time
     FROM

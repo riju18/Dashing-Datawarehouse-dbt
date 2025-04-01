@@ -15,9 +15,10 @@ WITH CTE AS (
         , COUNT(DISTINCT df.film_id) AS total_film
     FROM 
         {{ref('src_film_actor')}} AS sfa
-    LEFT JOIN dbt_dim.dim_film df ON df.film_id = sfa.film_id 
+    LEFT JOIN {{ref('dim_film')}} AS df ON df.film_id = sfa.film_id 
     WHERE 1=1
-        AND src_data_ingestion_time::date = CURRENT_DATE
+        AND sfa.src_data_ingestion_time::date = CURRENT_DATE
+        OR df.src_data_ingestion_time::date = CURRENT_DATE
     GROUP BY 1, 2, 3, 4
 ),
 

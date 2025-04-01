@@ -18,7 +18,7 @@ WITH CTE AS (
     FROM
         {{source('dvdrental_raw_data', 'address')}}
     WHERE 1=1
-        AND last_update::date = CURRENT_DATE - 1
+        AND {{timestamp_to_date('last_update')}} = CURRENT_DATE - 1
 )
 
 SELECT

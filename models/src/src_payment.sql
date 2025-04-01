@@ -18,7 +18,7 @@ WITH CTE AS (
     FROM
         {{source('dvdrental_raw_data', 'payment')}}
     WHERE 1=1
-        AND payment_date::date = CURRENT_DATE - 1
+        AND {{timestamp_to_date('payment_date')}} = CURRENT_DATE - 1
 ),
 
 final_result AS (
@@ -47,6 +47,6 @@ FROM
 {% if is_incremental() %}
 
 WHERE 1=1 
-    AND last_update > (SELECT MAX(last_update) FROM {{ this }})
+    AND payment_date > (SELECT MAX(payment_date) FROM {{ this }})
 
 {% endif %}
