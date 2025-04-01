@@ -9,7 +9,7 @@ WITH CTE AS (
 
     SELECT
         language_id
-        , TRIM(name) AS language
+        , {{ trim_col('name') }} AS language
         , src_data_ingestion_time
         , ROW_NUMBER() OVER(PARTITION BY language_id ORDER BY src_data_ingestion_time DESC) AS seq
     FROM

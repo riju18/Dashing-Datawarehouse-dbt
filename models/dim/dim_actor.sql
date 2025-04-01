@@ -9,8 +9,8 @@ WITH CTE AS (
 
     SELECT
         actor_id
-        , TRIM(first_name) AS first_name
-        , TRIM(last_name) AS last_name
+        , {{ trim_col('first_name') }} AS first_name
+        , {{ trim_col('last_name') }} AS last_name
         , src_data_ingestion_time
         , ROW_NUMBER() OVER(PARTITION BY actor_id ORDER BY src_data_ingestion_time DESC) AS seq
     FROM

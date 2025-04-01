@@ -11,9 +11,9 @@ WITH CTE AS (
         customer_id
         , store_id
         , address_id
-        , TRIM(first_name) AS first_name
-        , TRIM(last_name) AS last_name
-        , TRIM(email) AS email
+        , {{ trim_col('first_name') }} AS first_name
+        , {{ trim_col('last_name') }} AS last_name
+        , {{ trim_col('email') }} AS email
         , src_data_ingestion_time
         , ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY src_data_ingestion_time DESC) AS seq
     FROM

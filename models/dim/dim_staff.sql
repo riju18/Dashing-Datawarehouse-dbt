@@ -11,10 +11,10 @@ WITH CTE AS (
         staff_id
         , address_id
         , store_id
-        , TRIM(first_name) AS first_name
-        , TRIM(last_name) AS last_name
-        , TRIM(username) AS username
-        , TRIM(email) AS email
+        , {{ trim_col('first_name') }} AS first_name
+        , {{ trim_col('last_name') }} AS last_name
+        , {{ trim_col('username') }} AS username
+        , {{ trim_col('email') }} AS email
         , password
         , active
         , picture
@@ -33,10 +33,10 @@ final_result AS (
         , staff_id
         , address_id
         , store_id
-        , TRIM(first_name) AS first_name
-        , TRIM(last_name) AS last_name
-        , TRIM(username) AS username
-        , TRIM(email) AS email
+        , first_name
+        , last_name
+        , username
+        , email
         , password
         , active
         , picture

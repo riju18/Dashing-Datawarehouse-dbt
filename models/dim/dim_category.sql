@@ -9,7 +9,7 @@ WITH CTE AS (
 
     SELECT
         category_id
-        , TRIM(name) AS name
+        , {{ trim_col('name') }} AS name
         , src_data_ingestion_time
         , ROW_NUMBER() OVER(PARTITION BY category_id ORDER BY src_data_ingestion_time DESC) AS seq
     FROM
