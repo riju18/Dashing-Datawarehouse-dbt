@@ -41,3 +41,9 @@ models:
       +materialized: table
       +schema: fact
       +tags: ["silver", "gold", "fact modeling"]
+
+snapshots:
+  dashing_warehouse:
+    +target_schema: snapshots
+    +strategy: timestamp
+    +invalidate_hard_deletes: true

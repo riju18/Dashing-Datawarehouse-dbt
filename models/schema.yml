@@ -6,15 +6,109 @@ models:
     columns:
       - name: actor_id
         description: unique key of actor table
-        tests:
+        data_tests:
           - not_null
 
       - name: first_name
         description: firstname of actor
-        tests:
+        data_tests:
           - not_null
 
       - name: last_name
         description: lastname of actor
-        tests:
+        data_tests:
+          - not_null
+  
+  - name: dim_actor
+    description: actor table with unique actor info
+    columns:
+      - name: actor_id
+        description: unique key of actor table
+        data_tests:
+          - not_null
+          - unique
+  
+  - name: dim_address
+    description: address table with unique address info
+    columns:
+      - name: address_id
+        description: unique key of address table
+        data_tests:
+          - not_null
+          - unique
+      
+      - name: address
+        description: address of customer or staff
+        data_tests:
+          - not_null
+  
+  - name: dim_category
+    description: movie category dim table
+    columns:
+      - name: category_id
+        description: unique key of category table
+        data_tests:
+          - not_null
+          - unique
+      
+      - name: name
+        description: movie category name
+        data_tests:
+          - not_null
+  
+  - name: dim_customer
+    description: customer dim table
+    columns:
+      - name: customer_id
+        description: unique key of customer table
+        data_tests:
+          - not_null
+          - unique
+  
+  - name: dim_film
+    description: film dim table with film category and language
+    columns:
+      - name: film_id
+        description: unique key of film table
+        data_tests:
+          - unique 
+          - not_null
+          - equal_count:  # generic test
+              source_model: ref('src_film')
+              source_column: film_id
+            
+  
+  - name: dim_language
+    description: film language dim table
+    columns:
+      - name: language_id
+        description: unique key of language table
+        data_tests:
+          - not_null
+          - unique
+  
+  - name: dim_staff
+    description: inventory staff dim table
+    columns:
+      - name: staff_id
+        description: unique key of staff table
+        data_tests:
+          - not_null
+          - unique
+  
+  - name: dim_store
+    description: inventory dim table
+    columns:
+      - name: store_id
+        description: unique key of inventory table
+        data_tests:
+          - not_null
+          - unique
+  
+  - name: fact_actor_total_film
+    description: fact table containing total movies based on different category
+    columns:
+      - name: actor_id
+        description: actor identification
+        data_tests:
           - not_null

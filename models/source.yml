@@ -4,6 +4,7 @@ sources:
   
   # source of SOME data
   - name: dvdrental_raw_data # this is the source_name
+    description: Dvdrental database contains raw data of movie, actor, staff and rental information
     database: "dvdrental"
     schema: public
 
