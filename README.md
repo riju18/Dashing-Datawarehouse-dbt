@@ -1,6 +1,37 @@
-### Welcome to Dashing DataWarehouse with dbt project! ( ```ongoing``` )
+# Welcome to Dashing DataWarehouse with dbt project!
 
-## Dir Structure
+# index
+- [Data Architecture](#data_architecture)
+- [DAG Sample](#dag_sample)
+- [Directory Structure](#dir-structure)
+- [Prerequisites](#prerequisites)
+- [How to Run This Project](#how_to_run_this_project)
+- [Lessons learned](#lessons_learned)
+
+# data_architecture
+```mermaid
+flowchart LR
+
+public[Prod DB] --> dbt
+
+dbt --clean, raw data--> dbt_src
+dbt --non redundant--> dbt_dim
+dbt --analytical--> dbt_fact
+dbt --scd--> snapshots
+```
+
+# dag_sample
+```mermaid
+flowchart LR
+film_category --prod to dwh--> src_film_category --dimension--> dim_film
+category --prod to dwh--> src_category --dimension--> dim_film
+film --prod to dwh--> src_film --dimension--> dim_film
+language --prod to dwh--> src_language --dimension--> dim_film
+
+dim_film --data tests--> movie_release_year_not_less_than_2006
+```
+
+# dir-structure
 
 ```
 project
@@ -11,10 +42,11 @@ project
 |   dbt_project.yml
 │
 └───miscellaneous
-│   │   profiles.yml     : sample config file
+│   │   dvdrental.tar     : example DB for postgres
 │   
 └───models
 │   │   schema.yml       : for generic test & documentation
+|   └───source.yml       : Data sources
 │   └───src              : all core sql file
 │   └───dim              : data generated from src
 │   └───fact             : data generated from src
@@ -26,45 +58,67 @@ project
 │   │   *.sql     : history/log of tables
 │   
 └───tests
-│   │   *.sql     : custom test file 
+│   │   *.sql     : custom singular test file 
+│
+└───macros
+│   │   test_*.sql     : generic(parameterized) test file 
 ```
 
-# DAG sample
-![graph](dbt-dag.png)
+# prerequisites
+- Python
+- SQL
+- PostgreSQL
+- dbt
+- Linux/mac
 
-# Instruction
-+ [Environment setup](#set_environment)
-+ [Project setup](#set_project)
-+ [Import data to DWH](#import)
-
-# set_environment
+# how_to_run_this_project
 + create python venv
-+ install ```requirements.txt```
+    ```sh
+    python3 -m venv venv_name
+    ```
++ activate: 
+    ```sh 
+    source venv_name/bin/activate 
+    ```
++ install dependency
+    ```sh
+    pip install -r requirements.txt
+    ```
 
-# set_project
-+ DB setup ( ```postgres``` )
-    + DBName: dvdrental
-    + restore ```miscellaneous --> dvdrental.tar``` in ```public``` schema
-    + SchemaName: dashingdvdrental
++ DB setup(`postgres` )
+    + **DBName**: dvdrental
+    + restore the DB: ```miscellaneous --> dvdrental.tar``` in ```public``` schema
+
 + clone the repo
-+ goto repo
-+ File configure: configure the following file according to ```miscellaneous --> profiles.yml```
-
-    + Windows
-        + C:\Users\This Pc\\.dbt
-    + linux
-    + mac
-+ check config: ```dbt debug```
-+ test project: ```dbt test```
-+ run project: ```dbt run```
-+ snapshot/log generate: ```dbt snapshot```
++ clone and rename the `profiles_sample.yml` to `profiles.yml`
++ Update the credentials in `profiles.yml`
++ check config: ```dbt debug --target dev```
++ install dbt packages: ```dbt deps --target dev```
++ test project: ```dbt test --target dev```
++ run project: ```dbt run --target dev```
++ snapshot/log generate: ```dbt snapshot --target dev```
 + Documentation of project:
-    ```text
-    dbt docs generate
+    ```sh
+    dbt docs generate --target dev
     ```
-    ```text
-    dbt docs serve
+    ```sh
+    dbt docs serve --port 8002 --target dev
     ```
 
-# import
-+ place any ```*.csv``` file in ```seeds``` dir & run ```dbt seed```. A table will be created with the name of csv file.
+# lessons_learned
+- materialization
+    - table
+    - view
+    - incremental
+    - ephemeral (`not implemented`)
+- macros
+- test
+    - generic
+    - singular
+- snapshot
+    - SCD2
+- dbt docs
+- configurations
+    - `dbt_project.yml`
+    - `source.yml`
+    - `schema.yml`
